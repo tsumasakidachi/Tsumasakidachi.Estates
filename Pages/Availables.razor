@@ -1,0 +1,120 @@
+﻿@page "/availables"
+@using Microsoft.Extensions.Caching.Memory;
+@using NaturalSort.Extension
+@using Tsumasakidachi.Estates.Components
+@using Tsumasakidachi.Estates.Repositories
+@using Tsumasakidachi.Estates.Entities
+@inject IRepository<Structure> StrucureRepository
+@inject IJSRuntime JSRuntime
+@inject IMemoryCache MemoryCache
+
+<header class="top-nav-bar topic">
+    <div class="logo dark separation">
+        <div class="outer">
+            <h1>
+                <NavLink href="" class="nav-highlight top-nav-button">
+                    <img src="image/tsumazaki-estate.1x.png"
+                         srcset="image/tsumazaki-estate.1x.png, /image/tsumazaki-estate.2x.png 2x"
+                         width="144"
+                         height="20"
+                         alt="妻崎地所" />
+                </NavLink>
+            </h1>
+        </div>
+    </div>
+    <div class="separation">
+        <div class="outer">
+            <ul class="list-view horizontal wrappable serial-items">
+                <li class="list-view-item serial heading-text serial">
+                    <NavLink href="" class="selection-highlight">スポットライト</NavLink>
+                </li>
+                <li class="list-view-item serial heading-text serial">
+                    <NavLink href="projects" class="selection-highlight">プロジェクト</NavLink>
+                </li>
+                <li class="list-view-item serial heading-text serial">
+                    <NavLink href="availables" class="selection-highlight selected">物件</NavLink>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main role="main" class="topic">
+    <div class="outer">
+        @if (GroupedItems != null && GroupedItems.Count > 0)
+        {
+            <ul class="list-view vertical grouped-availables">
+                @foreach (var GroupedItem in GroupedItems)
+                {
+                    <li class="list-view-item topic">
+                        <section>
+                            <h1 class="subtitle-text letterpress">@GroupedItem.Key.Name</h1>
+                            <div class="letterpress">
+                                <ul class="list-view vertical availables">
+                                    @foreach (var Item in GroupedItem)
+                                    {
+                                        <li class="list-view-item">
+                                            <article class="">
+                                                <h1 class="title-text letterpress"><NavLink href="@Item.ShowPath" class="nav-highlight">@Item.Name</NavLink></h1>
+                                                <div class="master-details-view letterpress">
+                                                    <div class="master serial">
+                                                        <NavLink href="@Item.ShowPath" class="nav-highlight">
+                                                            @if (!string.IsNullOrEmpty(Item.Address))
+                                                            {
+                                                                <p class="letterpress">@Item.Address</p>
+                                                            }
+                                                            <p class="letterpress"><img src="@Item.EyecatchUrl" width="420" height="240" alt="" class="picture project-picture-small" /></p>
+                                                        </NavLink>
+                                                    </div>
+                                                    <div class="details serial">
+                                                        <ServicesView Items="Item.Services" />
+                                                    </div>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </section>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</main>
+<footer class="bottom-nav-bar topic">
+    <div class="outer">
+        <ContentInfo />
+    </div>
+</footer>
+
+@code {
+    private List<IGrouping<Market, Structure>> GroupedItems { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        GroupedItems = await GetItemsAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所 物件");
+    }
+
+    protected async Task<List<IGrouping<Market, Structure>>> GetItemsAsync()
+    {
+        var filters = new Dictionary<string, object>() {
+            { "IncludeServices", "true" },
+            { "HasServices", "true" }
+        };
+        var items = await StrucureRepository.FindAllAsync(filters);
+
+        var groupedtems = (from structure in items
+                            group structure by structure.Market into grp
+                            select grp).ToList();
+
+        var comparer = StringComparer.OrdinalIgnoreCase.WithNaturalSort();
+        groupedtems.Sort((a, b) => comparer.Compare(a.Key.Order, b.Key.Order));
+
+        return groupedtems;
+    }
+}

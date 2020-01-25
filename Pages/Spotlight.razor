@@ -1,0 +1,118 @@
+﻿@page "/"
+@using Microsoft.Extensions.Caching.Memory;
+@using Tsumasakidachi.Estates.Components
+@using Tsumasakidachi.Estates.Repositories
+@using Tsumasakidachi.Estates.Entities
+@inject IRepository<Structure> StrucureRepository
+@inject IJSRuntime JSRuntime
+@inject IMemoryCache MemoryCache;
+
+<div class="spotlight dark">
+    <header class="header top-nav-bar topic">
+        <div class="logo separation">
+            <div class="outer">
+                <h1>
+                    <NavLink href="" class="nav-highlight top-nav-button">
+                        <img src="image/tsumazaki-estate.1x.png"
+                             srcset="image/tsumazaki-estate.1x.png, /image/tsumazaki-estate.2x.png 2x"
+                             width="144"
+                             height="20"
+                             alt="妻崎地所" />
+                    </NavLink>
+                </h1>
+            </div>
+        </div>
+        <div class="separation">
+            <div class="outer">
+                <ul class="list-view horizontal wrappable serial-items">
+                    <li class="list-view-item serial heading-text serial">
+                        <NavLink href="" class="selection-highlight selected">スポットライト</NavLink>
+                    </li>
+                    <li class="list-view-item serial heading-text serial">
+                        <NavLink href="projects" class="selection-highlight">プロジェクト</NavLink>
+                    </li>
+                    <li class="list-view-item serial heading-text serial">
+                        <NavLink href="availables" class="selection-highlight">物件</NavLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    @if (SelectedItem != null)
+    {
+        <div class="content">
+            <img src="@SelectedItem.EyecatchUrl" class="spotlighted-eyecatch" alt="" />
+        </div>
+    }
+    <footer class="footer bottom-nav-bar topic">
+        <div class="outer">
+            @if (SelectedItem != null)
+            {
+                <section class="separation">
+                    <h1 class="body-text letterpress">妻崎地所がおすすめする</h1>
+                    <div class="list-view horizontal spotlighted-services letterpress">
+                        <div class="list-view-item">
+                            <h2 class="subheading-text">
+                                <NavLink href="@SelectedItem.ShowPath" class="nav-highlight">
+                                    @SelectedItem.Name
+                                </NavLink>
+                            </h2>
+                        </div>
+                        @foreach (var Highight in Spotlights)
+                        {
+                            <div class="list-view-item">
+                                <p>@Highight.ProvideAs</p>
+                                <p>@Highight.Name</p>
+                                <p class="subtitle-text">
+                                    @Highight.Value.Value.ToString("N0")
+                                    <span class="caption-text">@Highight.Unit</span>
+                                </p>
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+
+            <div class="separation">
+                <ContentInfo />
+            </div>
+        </div>
+    </footer>
+</div>
+
+@code {
+    private Structure SelectedItem { get; set; }
+    private List<Service> Spotlights { get; set; } = new List<Service>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        SelectedItem = await GetItemAsync();
+        Spotlights = await GetSpotlightsAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所");
+    }
+
+    protected async Task<Structure> GetItemAsync()
+    {
+        var filters = new Dictionary<string, object>()
+    {
+            { "IncludeServices", "true" },
+            { "Slug", "chrome-building" }
+        };
+        var item = await StrucureRepository.FindAsync(filters);
+
+        return item;
+    }
+
+    protected async Task<List<Service>> GetSpotlightsAsync()
+    {
+        return (from service in SelectedItem?.Services
+                where service.CostPerSqM != null
+                orderby service.CostPerSqM
+                group service by new { Name = service.Name, ProvideAs = service.ProvideAs } into grp
+                select grp.First()).ToList();
+    }
+}

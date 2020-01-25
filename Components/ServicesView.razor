@@ -1,0 +1,61 @@
+﻿@using Tsumasakidachi.Estates.Entities
+
+<table class="service-view data">
+    <thead>
+        <tr>
+            <th class="floor">フロア</th>
+            <th class="grade">グレード</th>
+            <th class="usage">用途</th>
+            <th class="value">価格</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Service in Items)
+        {
+        <tr>
+            <th class="floor">
+                <p class="subtitle-text">@Service.Floor</p>
+            </th>
+            <td class="grade">
+                @if (!string.IsNullOrEmpty(Service.Grade))
+                {
+                    <p class="subtitle-text">
+                        @Service.Grade
+                    </p>
+                }
+            </td>
+            <td class="usage">
+                <p class="subtitle-text">
+                    @if (Service.Area.HasValue)
+                    {
+                        @Service.Area.Value.ToString("N0")
+                        <span class="caption-text">
+                            m
+                            <sup>2</sup>
+                        </span>
+                    }
+                </p>
+                @if (!string.IsNullOrEmpty(Service.Name))
+                {
+                    <p v-if="service.name">@Service.Name</p>
+                }
+            </td>
+            <td class="value">
+                @if (Service.Value.HasValue && !string.IsNullOrEmpty(Service.Unit) && !string.IsNullOrEmpty(Service.ProvideAs))
+                {
+                    <p class="subtitle-text">
+                        @Service.Value.Value.ToString("N0")
+                        <span class="caption-text">@Service.Unit</span>
+                    </p>
+                    <p>@Service.ProvideAs</p>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<Service> Items { get; set; } = new List<Service>();
+}

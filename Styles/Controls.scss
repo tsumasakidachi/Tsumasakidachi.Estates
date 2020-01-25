@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+/* リスト ビュー */
+@mixin VerticalListView()
+{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+@mixin HorizontalListView()
+{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+
+@mixin ListViewItemsWrap()
+{
+	flex-wrap: wrap;
+}
+
+@mixin ListViewItem()
+{
+	flex: 0 0 auto;
+    margin-left: 0px;
+    list-style-type: none;
+}
+
+.list-view.vertical
+{
+	@include VerticalListView();
+
+	& > .list-view-item
+	{
+		@include ListViewItem();
+	}
+}
+
+.list-view.horizontal
+{
+	@include HorizontalListView();
+
+	& > .list-view-item
+	{
+		@include ListViewItem();
+	}
+}
+
+.list-view.wrappable
+{
+	@include ListViewItemsWrap();
+}
+
+ul.list-view,
+ol.list-view,
+li.list-view-item
+{
+	// margin-left: 0px;
+	list-style-type: none;
+}
+
+/* コレクションに対する操作 */
+.collection-command-bar
+{
+	display: flex;
+
+	& > .count
+	{
+		flex: auto;
+		font-weight: bold;
+	}
+
+	& > .content
+	{
+		flex: none;
+	}
+
+	& > .commands
+	{
+		flex: none;
+		margin-left: 20px;
+	}
+}
+
+/* メイン/アサイド ビュー */
+
+@mixin MainAsideView()
+{
+	display: flex;
+}
+
+@mixin ContentMain()
+{
+	flex: 1 1 auto;
+}
+
+@mixin ContentAside()
+{
+	flex: 0 0 auto;
+}
+
+.main-aside-view
+{
+	@include MainAsideView();
+
+	& > .main
+	{
+		@include ContentMain();
+	}
+
+	& > .aside
+	{
+		@include ContentAside();
+	}
+}
+
+/* マスタ/詳細ビュー */
+
+@mixin MasterDetailsView()
+{
+	display: flex;
+}
+
+@mixin ContentMaster()
+{
+	flex: none;
+}
+
+@mixin ContentDetails()
+{
+	flex: auto;
+}
+
+.master-details-view
+{
+	@include MasterDetailsView();
+
+	& > .master
+	{
+		@include ContentMaster();
+	}
+
+	& > .details
+	{
+		@include ContentDetails();
+	}
+}
+
+/* 非表示 */
+
+.hidden
+{
+	display: none;
+}
+

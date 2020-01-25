@@ -1,0 +1,104 @@
+﻿@page "/projects"
+@using Microsoft.Extensions.Caching.Memory;
+@using NaturalSort.Extension
+@using Tsumasakidachi.Estates.Components
+@using Tsumasakidachi.Estates.Repositories
+@using Tsumasakidachi.Estates.Entities
+@inject IRepository<Structure> StrucureRepository
+@inject IJSRuntime JSRuntime
+@inject IMemoryCache MemoryCache
+
+<header class="top-nav-bar topic">
+    <div class="logo dark separation">
+        <div class="outer">
+            <h1>
+                <NavLink href="" class="nav-highlight  top-nav-button">
+                    <img src="image/tsumazaki-estate.1x.png"
+                         srcset="image/tsumazaki-estate.1x.png, /image/tsumazaki-estate.2x.png 2x"
+                         width="144"
+                         height="20"
+                         alt="妻崎地所" />
+                </NavLink>
+            </h1>
+        </div>
+    </div>
+    <div class="separation">
+        <div class="outer">
+            <ul class="list-view horizontal wrappable serial-items">
+                <li class="list-view-item serial heading-text serial">
+                    <NavLink href="" class="selection-highlight">スポットライト</NavLink>
+                </li>
+                <li class="list-view-item serial heading-text serial">
+                    <NavLink href="projects" class="selection-highlight selected">プロジェクト</NavLink>
+                </li>
+                <li class="list-view-item serial heading-text serial">
+                    <NavLink href="availables" class="selection-highlight">物件</NavLink>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main role="main" class="topic">
+    <div class="outer">
+        @if (GroupedItems != null && GroupedItems.Count > 0)
+        {
+            <ul class="list-view vertical">
+                @foreach (var GroupedItem in GroupedItems)
+                {
+                    <li class="list-view-item topic">
+                        <section>
+                            <h1 class="subtitle-text letterpress">@GroupedItem.Key.Name</h1>
+                            <div class="letterpress">
+                                <ul class="list-view horizontal wrappable projects">
+                                    @foreach (var Item in GroupedItem)
+                                    {
+                                        <li class="list-view-item">
+                                            <NavLink href="@Item.ShowPath" class="nav-highlight">
+                                                <figure class="project">
+                                                    <img src="@Item.EyecatchSUrl" srcset="@Item.EyecatchSUrl 1x, @Item.EyecatchHUrl 2x" width="420" height="240" alt="" class="picture project-picture-small" />
+                                                    <figcaption class="caption subheading-text">@Item.Name</figcaption>
+                                                </figure>
+                                            </NavLink>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </section>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</main>
+<footer class="bottom-nav-bar topic">
+    <div class="outer">
+        <ContentInfo />
+    </div>
+</footer>
+
+@code {
+    private List<IGrouping<Market, Structure>> GroupedItems { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        GroupedItems = await GetItemsAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所 プロジェクト");
+    }
+
+    protected async Task<List<IGrouping<Market, Structure>>> GetItemsAsync()
+    {
+        var items = await StrucureRepository.FindAllAsync(new Dictionary<string, object>());
+        var groupedtems = (from structure in items
+                           group structure by structure.Market into grp
+                           select grp).ToList();
+
+        var comparer = StringComparer.OrdinalIgnoreCase.WithNaturalSort();
+        groupedtems.Sort((a, b) => comparer.Compare(a.Key.Order, b.Key.Order));
+
+        return groupedtems;
+    }
+}

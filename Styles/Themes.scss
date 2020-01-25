@@ -1,0 +1,724 @@
+﻿@charset "UTF-8";
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+dl,
+dd,
+dt,
+ul,
+ol,
+li,
+th,
+td,
+figure
+{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+    line-height: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+li
+{
+	margin-left: 2em;
+}
+
+dd
+{
+	margin-left: 2em;
+}
+
+a
+{
+    text-decoration: none;
+
+    & .accent
+    {
+        text-decoration: underline;
+    }
+}
+
+img
+{
+    vertical-align: bottom;
+}
+
+sup,
+sub
+{
+    line-height: 0.5em;
+    font-size: 0.5em;
+}
+
+table
+{
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+th,
+td
+{
+    vertical-align: top;
+    text-align: left;
+}
+
+/* 文字体裁 */
+
+body
+{
+    font-family: 'Poppins', source-han-sans-japanese, sans-serif;
+    background-color: #E0E0E0;
+    color: #000000;
+}
+
+sup, sub
+{
+	line-height: 0.5em;
+}
+
+address
+{
+	font-style: normal;
+}
+
+.motif-text
+{
+    font-family: 'Segoe UI Symbol';
+}
+
+.caption-text
+{
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.body-text, body
+{
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.subheading-text
+{
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.heading-text
+{
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.subtitle-text
+{
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.title-text
+{
+    line-height: 40px;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.dark
+{
+    color: #ffffff;
+}
+
+.nav-highlight {
+    background-color: transparent;
+
+    &:link,
+    &:visited {
+        color: #000000;
+    }
+
+    &:hover {
+        color: #404040;
+
+        & img {
+            filter: contrast(90%) brightness(110%);
+        }
+    }
+
+    &:active {
+        color: #666666;
+
+        & img {
+            filter: contrast(75%) brightness(125%);
+        }
+    }
+
+    &.dark:link,
+    &.dark:visited,
+    .dark &:link,
+    .dark &:visited {
+        color: #ffffff;
+    }
+
+    &.dark:hover,
+    .dark &:hover {
+        color: #dfdfdf;
+    }
+
+    &.dark:active,
+    .dark &:active {
+        color: #a0a0a0;
+    }
+}
+
+.selection-highlight {
+    background-color: transparent;
+
+    &:link,
+    &:visited {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    &:hover {
+        color: rgba(0, 0, 0, 0.55);
+    }
+
+    &:active {
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    &.selected:link,
+    &.selected:visited {
+        color: rgba(0, 0, 0, 1);
+    }
+
+    &.selected:hover {
+        color: rgba(0, 0, 0, 0.9);
+    }
+
+    &.selected:active {
+        color: rgba(0, 0, 0, 0.75);
+    }
+
+    &.dark:link,
+    &.dark:visited,
+    .dark &:link,
+    .dark &:visited {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    &.dark:hover,
+    .dark &:hover {
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    &.dark:active,
+    .dark &:hover {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    &.selected.dark:link,
+    &.selected.dark:visited,
+    .dark &.selected:link,
+    .dark &.selected:visited {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    &.selected.dark:hover,
+    .dark &.selected:hover {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    &.selected.dark:active,
+    .dark &.selected:hover {
+        color: rgba(255, 255, 255, 0.75);
+    }
+}
+
+/* コンテンツ */
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.letterpress-compressed + .letterpress-compressed
+{
+    margin-top: 8px;
+}
+
+.letterpress + .letterpress 
+{
+    margin-top: 20px;
+}
+
+.separation + .separation
+{
+    margin-top: 40px;
+}
+
+.topic + .topic
+{
+    margin-top: 80px;
+}
+
+.serial + .serial
+{
+    margin-left: 20px;
+}
+
+.parallel + .parallel
+{
+    margin-left: 80px;
+}
+
+.list-view.serial
+{
+    margin: -10px;
+
+    & > .list-view-item
+    {
+        margin-left: 0px;
+        padding: 10px;
+    }
+}
+
+.list-view.serial-items
+{
+    margin: -10px;
+
+    & > .list-view-item.serial
+    {
+        margin-left: 0px;
+        padding: 10px;
+    }
+}
+
+/* フレームワーク */
+
+.outer
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+@media(min-width: 640px)
+{
+    .outer
+    {
+        margin-left: 90px;
+        margin-right: 90px;
+    }
+}
+
+@media(min-width: 1920px)
+{
+    .outer
+    {
+        width: 1740px;
+        margin-left: 90px;
+        margin-right: auto;
+    }
+}
+
+/* ナビゲーション */
+
+.top-nav-bar
+{
+    & > .logo.dark
+    {
+        height: 40px;
+        background-color: #333333;
+    }
+}
+
+.top-nav-button
+{
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.master-details-view.content-info
+{
+    display: block;
+}
+
+.content-info > .serial + .serial
+{
+    margin-top: 20px;
+    margin-left: 0px;
+}
+
+@media(min-width: 640px)
+{
+    .master-details-view.content-info
+    {
+        display: flex;
+    }
+
+    .master-details-view.content-info > .master
+    {
+        width: 200px;
+    }
+
+    .master-details-view.content-info > .serial + .serial
+    {
+        margin-top: 0px;
+        margin-left: 20px;
+    }
+}
+
+/* ハイライト */
+
+.spotlight {
+    position: relative;
+    background-color: #333333;
+
+    & > .header {
+        z-index: 2;
+        position: absolute;
+        top: 0px;
+        bottom: auto;
+        left: 0px;
+        right: 0px;
+    }
+
+    & > .footer {
+        z-index: 2;
+        position: absolute;
+        top: auto;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding-bottom: 20px;
+        background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.4) 100%)
+    }
+
+    & > .content {
+        z-index: -1;
+    }
+}
+
+.spotlighted-eyecatch {
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
+    object-fit: cover;
+}
+
+.list-view.spotlighted-services {
+    & > .list-view-item {
+        width: 180px;
+        padding-left: 19px;
+        padding-right: 20px;
+        border-left: 1px solid #000000;
+
+        &.dark,
+        .dark & {
+            border-left: 1px solid #ffffff;
+        }
+
+        &:first-child {
+            padding-left: 0px;
+            border-left: none;
+        }
+    }
+}
+
+/* プロジェクトのリスト */
+
+.list-view.projects
+{
+    margin: -20px -10px;
+
+    & > .list-view-item
+    {
+        padding: 20px 10px;
+    }
+}
+
+.project
+{
+    & > .picture
+    {
+        background-color: #808080;
+    }
+
+    & > .caption
+    {
+        margin-top: 8px;
+    }
+}
+
+.project-picture-small
+{
+    width: calc((100vw - 60px) / 2);
+    height: 100px;
+}
+
+
+@media(min-width: 640px)
+{
+    .project-picture-small
+    {
+        width: 420px;
+        height: 240px;
+    }
+}
+
+/* 物件のリスト */
+
+.list-view.grouped-availables {
+    max-width: 1300px;
+}
+
+.list-view.availables {
+    margin: -20px -10px;
+
+    & > .list-view-item {
+        padding: 20px 10px;
+    }
+}
+
+.master-details-view.available {
+    & > .master {
+        width: 420px;
+    }
+}
+
+/* プロジェクトの写真 */
+
+.picture-frame {
+    min-height: 40px;
+    position: sticky;
+    top: 0px;
+    bottom: -40px;
+    background-color: #333333;
+
+    & > .header {
+        position: absolute;
+        top: 0px;
+        bottom: auto;
+        left: 0px;
+        right: 0px;
+    }
+
+    & > .footer {
+        position: absolute;
+        top: auto;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+
+    & > .next {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: auto;
+        right: 0px;
+        display: flex;
+        align-items: center;
+    }
+
+    & > .prev {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    & > .content {
+        margin-bottom: -100px;
+    }
+}
+
+img.eyecatch {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+button.picture-flipping {
+    width: 40px;
+    height: 40px;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:active {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* プロジェクトの詳細 */
+
+.project-details {
+    z-index: 1;
+    position: relative;
+    margin-top: -20px;
+    margin-bottom: 0px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 20px;
+    background-color: rgba(224, 224, 224, 0.8);
+}
+
+.master-details-view.facts {
+    display: block;
+}
+
+@media(min-width: 640px) {
+    .project-details {
+        max-width: 860px;
+    }
+
+    .master-details-view.facts
+    {
+        display: flex;
+    }
+
+    .master-details-view.facts > .master {
+        width: 420px;
+        margin-right: 20px;
+    }
+}
+
+table.data tr th,
+table.data tr td
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+table.data tr th:first-child,
+table.data tr td:first-child
+{
+    padding-left: 0px;
+}
+
+table.data tr th:last-child,
+table.data tr td:last-child
+{
+    padding-right: 0px;
+}
+
+
+/* プロジェクトのサービス */
+
+table.service-view
+{
+    width: 100%;
+    border-collapse: collapse;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+}
+
+table.service-view thead tr th,
+table.service-view thead tr td
+{
+    border: none;
+    padding-bottom: 20px;
+}
+
+table.service-view tbody tr th,
+table.service-view tbody tr td
+{
+    padding-top: 19px;
+    padding-bottom: 40px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+table.service-view tbody tr:last-child th,
+table.service-view tbody tr:last-child td
+{
+    padding-bottom: 0px;
+    border-bottom-width: 0px;
+}
+
+table.service-view .floor
+{
+    width: 200px;
+}
+
+table.service-view .usage {
+    width: 200px;
+}
+
+table.service-view .grade {
+    width: 200px;
+}
+
+table.service-view .value {
+    width: 200px;
+}
+
+/* 使用条件 */
+
+.master-details-view.use-condition {
+    display: block;
+}
+
+@media(min-width: 640px) {
+    .master-details-view.use-condition {
+        max-width: 860px;
+        display: flex;
+
+        & > .master {
+            width: 200px;
+            margin-right: 20px;
+            text-align: right;
+        }
+    }
+}
+

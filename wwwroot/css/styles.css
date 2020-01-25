@@ -1,0 +1,839 @@
+﻿@charset "UTF-8";
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0; }
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block; }
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder; }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sub {
+  bottom: -0.25em; }
+
+sup {
+  top: -0.5em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible; }
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none; }
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; }
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0; }
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em; }
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */ }
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline; }
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */ }
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */ }
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block; }
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item; }
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none; }
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none; }
+
+/* リスト ビュー */
+.list-view.vertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap; }
+  .list-view.vertical > .list-view-item {
+    flex: 0 0 auto;
+    margin-left: 0px;
+    list-style-type: none; }
+
+.list-view.horizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; }
+  .list-view.horizontal > .list-view-item {
+    flex: 0 0 auto;
+    margin-left: 0px;
+    list-style-type: none; }
+
+.list-view.wrappable {
+  flex-wrap: wrap; }
+
+ul.list-view,
+ol.list-view,
+li.list-view-item {
+  list-style-type: none; }
+
+/* コレクションに対する操作 */
+.collection-command-bar {
+  display: flex; }
+  .collection-command-bar > .count {
+    flex: auto;
+    font-weight: bold; }
+  .collection-command-bar > .content {
+    flex: none; }
+  .collection-command-bar > .commands {
+    flex: none;
+    margin-left: 20px; }
+
+/* メイン/アサイド ビュー */
+.main-aside-view {
+  display: flex; }
+  .main-aside-view > .main {
+    flex: 1 1 auto; }
+  .main-aside-view > .aside {
+    flex: 0 0 auto; }
+
+/* マスタ/詳細ビュー */
+.master-details-view {
+  display: flex; }
+  .master-details-view > .master {
+    flex: none; }
+  .master-details-view > .details {
+    flex: auto; }
+
+/* 非表示 */
+.hidden {
+  display: none; }
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+dl,
+dd,
+dt,
+ul,
+ol,
+li,
+th,
+td,
+figure {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  line-height: inherit;
+  font-size: inherit;
+  font-weight: inherit; }
+
+li {
+  margin-left: 2em; }
+
+dd {
+  margin-left: 2em; }
+
+a {
+  text-decoration: none; }
+  a .accent {
+    text-decoration: underline; }
+
+img {
+  vertical-align: bottom; }
+
+sup,
+sub {
+  line-height: 0.5em;
+  font-size: 0.5em; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0px; }
+
+th,
+td {
+  vertical-align: top;
+  text-align: left; }
+
+/* 文字体裁 */
+body {
+  font-family: 'Poppins', source-han-sans-japanese, sans-serif;
+  background-color: #E0E0E0;
+  color: #000000; }
+
+sup, sub {
+  line-height: 0.5em; }
+
+address {
+  font-style: normal; }
+
+.motif-text {
+  font-family: 'Segoe UI Symbol'; }
+
+.caption-text {
+  line-height: 16px;
+  font-size: 12px;
+  font-weight: 400; }
+
+.body-text, body {
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: 400; }
+
+.subheading-text {
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: 700; }
+
+.heading-text {
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: 400; }
+
+.subtitle-text {
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: 700; }
+
+.title-text {
+  line-height: 40px;
+  font-size: 28px;
+  font-weight: 900; }
+
+.dark {
+  color: #ffffff; }
+
+.nav-highlight {
+  background-color: transparent; }
+  .nav-highlight:link, .nav-highlight:visited {
+    color: #000000; }
+  .nav-highlight:hover {
+    color: #404040; }
+    .nav-highlight:hover img {
+      filter: contrast(90%) brightness(110%); }
+  .nav-highlight:active {
+    color: #666666; }
+    .nav-highlight:active img {
+      filter: contrast(75%) brightness(125%); }
+  .nav-highlight.dark:link, .nav-highlight.dark:visited,
+  .dark .nav-highlight:link,
+  .dark .nav-highlight:visited {
+    color: #ffffff; }
+  .nav-highlight.dark:hover,
+  .dark .nav-highlight:hover {
+    color: #dfdfdf; }
+  .nav-highlight.dark:active,
+  .dark .nav-highlight:active {
+    color: #a0a0a0; }
+
+.selection-highlight {
+  background-color: transparent; }
+  .selection-highlight:link, .selection-highlight:visited {
+    color: rgba(0, 0, 0, 0.5); }
+  .selection-highlight:hover {
+    color: rgba(0, 0, 0, 0.55); }
+  .selection-highlight:active {
+    color: rgba(0, 0, 0, 0.6); }
+  .selection-highlight.selected:link, .selection-highlight.selected:visited {
+    color: black; }
+  .selection-highlight.selected:hover {
+    color: rgba(0, 0, 0, 0.9); }
+  .selection-highlight.selected:active {
+    color: rgba(0, 0, 0, 0.75); }
+  .selection-highlight.dark:link, .selection-highlight.dark:visited,
+  .dark .selection-highlight:link,
+  .dark .selection-highlight:visited {
+    color: rgba(255, 255, 255, 0.5); }
+  .selection-highlight.dark:hover,
+  .dark .selection-highlight:hover {
+    color: rgba(255, 255, 255, 0.55); }
+  .selection-highlight.dark:active,
+  .dark .selection-highlight:hover {
+    color: rgba(255, 255, 255, 0.6); }
+  .selection-highlight.selected.dark:link, .selection-highlight.selected.dark:visited,
+  .dark .selection-highlight.selected:link,
+  .dark .selection-highlight.selected:visited {
+    color: white; }
+  .selection-highlight.selected.dark:hover,
+  .dark .selection-highlight.selected:hover {
+    color: rgba(255, 255, 255, 0.9); }
+  .selection-highlight.selected.dark:active,
+  .dark .selection-highlight.selected:hover {
+    color: rgba(255, 255, 255, 0.75); }
+
+/* コンテンツ */
+#blazor-error-ui {
+  background: lightyellow;
+  bottom: 0;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  display: none;
+  left: 0;
+  padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000; }
+
+#blazor-error-ui .dismiss {
+  cursor: pointer;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.5rem; }
+
+.letterpress-compressed + .letterpress-compressed {
+  margin-top: 8px; }
+
+.letterpress + .letterpress {
+  margin-top: 20px; }
+
+.separation + .separation {
+  margin-top: 40px; }
+
+.topic + .topic {
+  margin-top: 80px; }
+
+.serial + .serial {
+  margin-left: 20px; }
+
+.parallel + .parallel {
+  margin-left: 80px; }
+
+.list-view.serial {
+  margin: -10px; }
+  .list-view.serial > .list-view-item {
+    margin-left: 0px;
+    padding: 10px; }
+
+.list-view.serial-items {
+  margin: -10px; }
+  .list-view.serial-items > .list-view-item.serial {
+    margin-left: 0px;
+    padding: 10px; }
+
+/* フレームワーク */
+.outer {
+  margin-left: 20px;
+  margin-right: 20px; }
+
+@media (min-width: 640px) {
+  .outer {
+    margin-left: 90px;
+    margin-right: 90px; } }
+
+@media (min-width: 1920px) {
+  .outer {
+    width: 1740px;
+    margin-left: 90px;
+    margin-right: auto; } }
+
+/* ナビゲーション */
+.top-nav-bar > .logo.dark {
+  height: 40px;
+  background-color: #333333; }
+
+.top-nav-button {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.master-details-view.content-info {
+  display: block; }
+
+.content-info > .serial + .serial {
+  margin-top: 20px;
+  margin-left: 0px; }
+
+@media (min-width: 640px) {
+  .master-details-view.content-info {
+    display: flex; }
+  .master-details-view.content-info > .master {
+    width: 200px; }
+  .master-details-view.content-info > .serial + .serial {
+    margin-top: 0px;
+    margin-left: 20px; } }
+
+/* ハイライト */
+.spotlight {
+  position: relative;
+  background-color: #333333; }
+  .spotlight > .header {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    bottom: auto;
+    left: 0px;
+    right: 0px; }
+  .spotlight > .footer {
+    z-index: 2;
+    position: absolute;
+    top: auto;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding-bottom: 20px;
+    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.2) 20%, rgba(0, 0, 0, 0.4) 100%); }
+  .spotlight > .content {
+    z-index: -1; }
+
+.spotlighted-eyecatch {
+  width: 100%;
+  height: 100vh;
+  min-height: 800px;
+  object-fit: cover; }
+
+.list-view.spotlighted-services > .list-view-item {
+  width: 180px;
+  padding-left: 19px;
+  padding-right: 20px;
+  border-left: 1px solid #000000; }
+  .list-view.spotlighted-services > .list-view-item.dark,
+  .dark .list-view.spotlighted-services > .list-view-item {
+    border-left: 1px solid #ffffff; }
+  .list-view.spotlighted-services > .list-view-item:first-child {
+    padding-left: 0px;
+    border-left: none; }
+
+/* プロジェクトのリスト */
+.list-view.projects {
+  margin: -20px -10px; }
+  .list-view.projects > .list-view-item {
+    padding: 20px 10px; }
+
+.project > .picture {
+  background-color: #808080; }
+
+.project > .caption {
+  margin-top: 8px; }
+
+.project-picture-small {
+  width: calc((100vw - 60px) / 2);
+  height: 100px; }
+
+@media (min-width: 640px) {
+  .project-picture-small {
+    width: 420px;
+    height: 240px; } }
+
+/* 物件のリスト */
+.list-view.grouped-availables {
+  max-width: 1300px; }
+
+.list-view.availables {
+  margin: -20px -10px; }
+  .list-view.availables > .list-view-item {
+    padding: 20px 10px; }
+
+.master-details-view.available > .master {
+  width: 420px; }
+
+/* プロジェクトの写真 */
+.picture-frame {
+  min-height: 40px;
+  position: sticky;
+  top: 0px;
+  bottom: -40px;
+  background-color: #333333; }
+  .picture-frame > .header {
+    position: absolute;
+    top: 0px;
+    bottom: auto;
+    left: 0px;
+    right: 0px; }
+  .picture-frame > .footer {
+    position: absolute;
+    top: auto;
+    bottom: 0px;
+    left: 0px;
+    right: 0px; }
+  .picture-frame > .next {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: auto;
+    right: 0px;
+    display: flex;
+    align-items: center; }
+  .picture-frame > .prev {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: auto;
+    display: flex;
+    align-items: center; }
+  .picture-frame > .content {
+    margin-bottom: -100px; }
+
+img.eyecatch {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover; }
+
+button.picture-flipping {
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+  padding: 0px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  text-align: center;
+  vertical-align: middle; }
+  button.picture-flipping:hover {
+    background-color: rgba(255, 255, 255, 0.5); }
+  button.picture-flipping:active {
+    background-color: rgba(255, 255, 255, 0.7); }
+
+/* プロジェクトの詳細 */
+.project-details {
+  z-index: 1;
+  position: relative;
+  margin-top: -20px;
+  margin-bottom: 0px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding: 20px;
+  background-color: rgba(224, 224, 224, 0.8); }
+
+.master-details-view.facts {
+  display: block; }
+
+@media (min-width: 640px) {
+  .project-details {
+    max-width: 860px; }
+  .master-details-view.facts {
+    display: flex; }
+  .master-details-view.facts > .master {
+    width: 420px;
+    margin-right: 20px; } }
+
+table.data tr th,
+table.data tr td {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+table.data tr th:first-child,
+table.data tr td:first-child {
+  padding-left: 0px; }
+
+table.data tr th:last-child,
+table.data tr td:last-child {
+  padding-right: 0px; }
+
+/* プロジェクトのサービス */
+table.service-view {
+  width: 100%;
+  border-collapse: collapse;
+  border-top-width: 0px;
+  border-bottom-width: 0px; }
+
+table.service-view thead tr th,
+table.service-view thead tr td {
+  border: none;
+  padding-bottom: 20px; }
+
+table.service-view tbody tr th,
+table.service-view tbody tr td {
+  padding-top: 19px;
+  padding-bottom: 40px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-color: #000000;
+  border-style: solid; }
+
+table.service-view tbody tr:last-child th,
+table.service-view tbody tr:last-child td {
+  padding-bottom: 0px;
+  border-bottom-width: 0px; }
+
+table.service-view .floor {
+  width: 200px; }
+
+table.service-view .usage {
+  width: 200px; }
+
+table.service-view .grade {
+  width: 200px; }
+
+table.service-view .value {
+  width: 200px; }
+
+/* 使用条件 */
+.master-details-view.use-condition {
+  display: block; }
+
+@media (min-width: 640px) {
+  .master-details-view.use-condition {
+    max-width: 860px;
+    display: flex; }
+    .master-details-view.use-condition > .master {
+      width: 200px;
+      margin-right: 20px;
+      text-align: right; } }

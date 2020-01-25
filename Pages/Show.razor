@@ -1,0 +1,232 @@
+﻿@page "/project/{slug}"
+@using Microsoft.Extensions.Caching.Memory;
+@using Tsumasakidachi.Estates.Components
+@using Tsumasakidachi.Estates.Repositories
+@using Tsumasakidachi.Estates.Entities
+@inject IRepository<Structure> StrucureRepository
+@inject IRepository<File> FileRepository
+@inject IJSRuntime JSRuntime
+@inject IMemoryCache MemoryCache
+
+@if (!IsNotFound)
+{
+    <div class="picture-frame dark topic">
+        <header class="header top-nav-bar">
+            <div class="logo separation">
+                <div class="outer">
+                    <h1>
+                        <NavLink href="" class="nav-highlight top-nav-button">
+                            <img src="image/tsumazaki-estate.1x.png"
+                                 srcset="image/tsumazaki-estate.1x.png, /image/tsumazaki-estate.2x.png 2x"
+                                 width="144"
+                                 height="20"
+                                 alt="妻崎地所" />
+                        </NavLink>
+                    </h1>
+                </div>
+            </div>
+        </header>
+        @if (SelectedPhoto != null)
+        {
+            <div class="content">
+                <img src="@SelectedPhoto.Url" class="eyecatch" alt="" />
+            </div>
+            if (Photos.Count > 1)
+            {
+                <div class="prev">
+                    <button @onclick="FlipPhotoPrev" title="前へ" class="picture-flipping prev subtitle-text">&lt;</button>
+                </div>
+                <div class="next">
+                    <button @onclick="FlipPhotoNext" title="次へ" class="picture-flipping next subtitle-text">&gt;</button>
+                </div>
+            }
+        }
+    </div>
+
+    @if (SelectedItem != null)
+    {
+        <div class="outer topic">
+            <div class="project-details">
+                <main class="master-details-view facts topic">
+                    <div class="master">
+                        <h2 class="title-text">@SelectedItem.Name</h2>
+                    </div>
+                    <div class="details">
+                        <table class="facts data subheading-text topic">
+                            <tbody>
+                                <tr>
+                                    <th>用途</th>
+                                    <td>@SelectedItem.Market.Name</td>
+                                </tr>
+                                <tr>
+                                    <th>種類</th>
+                                    <td>@SelectedItem.Type</td>
+                                </tr>
+                                @if (!string.IsNullOrEmpty(SelectedItem.Address))
+                                {
+                                    <tr>
+                                        <th>場所</th>
+                                        <td>@SelectedItem.Address</td>
+                                    </tr>
+                                }
+                                @if (!string.IsNullOrEmpty(SelectedItem.StatusAndCompletedAt))
+                                {
+                                    <tr>
+                                        <th>状況</th>
+                                        <td>@SelectedItem.StatusAndCompletedAt</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @if (!string.IsNullOrEmpty(SelectedItem.Comment))
+                        {
+                            <div class="comment topic">
+                                <p>@SelectedItem.Comment</p>
+                            </div>
+                        }
+                    </div>
+                </main>
+                @if (SelectedItem.Services.Count > 0)
+                {
+                    <div class="services topic">
+                        <ServicesView Items="@SelectedItem.Services" />
+                    </div>
+                }
+                <footer class="bottom-nav-bar topic">
+                    <ContentInfo />
+                </footer>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <header class="top-nav-bar topic">
+        <div class="logo separation">
+            <div class="outer">
+                <h1>
+                    <NavLink href="" class="nav-highlight top-nav-button">
+                        <img src="image/tsumazaki-estate.1x.png"
+                             srcset="image/tsumazaki-estate.1x.png, /image/tsumazaki-estate.2x.png 2x"
+                             width="144"
+                             height="20"
+                             alt="妻崎地所" />
+                    </NavLink>
+                </h1>
+            </div>
+        </div>
+    </header>
+    <div class="content topic">
+        <div class="outer">
+            <h2>この URL には何も存在しません。</h2>
+        </div>
+    </div>
+    <footer class="bottom-nav-bar topic">
+        <div class="outer">
+            <ContentInfo />
+        </div>
+    </footer>
+}
+
+@code {
+    [Parameter]
+    public string Slug { get; set; }
+    private Structure SelectedItem { get; set; }
+    private List<File> Photos { get; set; }
+    private File SelectedPhoto { get; set; }
+    private bool IsNotFound { get; set; } = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        SelectedItem = await GetItemAsync(Slug);
+
+        if (SelectedItem == null)
+        {
+            IsNotFound = true;
+            return;
+        }
+
+        Photos = await GetPhotosAsync(Slug);
+        SelectedPhoto = Photos.FirstOrDefault(p => p.Url == SelectedItem.EyecatchUrl);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (SelectedItem != null)
+        {
+            await JSRuntime.InvokeVoidAsync("setTitle", SelectedItem.Name + " 妻崎地所");
+
+            //await JSRuntime.InvokeVoidAsync("addHeadChild", "meta", new
+            //{
+            //    name = "description",
+            //    content = "妻崎地所がおすすめする" + SelectedItem.Name
+            //});
+            //await JSRuntime.InvokeVoidAsync("addHeadChild", "meta", new
+            //{
+            //    property = "og:title",
+            //    content = SelectedItem.Name + " 妻崎地所"
+            //});
+            //await JSRuntime.InvokeVoidAsync("addHeadChild", "meta", new
+            //{
+            //    property = "og:type",
+            //    content = "website"
+            //});
+        }
+    }
+
+    protected async Task<Structure> GetItemAsync(string slug)
+    {
+        var filters = new Dictionary<string, object>()
+{
+            { "Slug", slug },
+            { "IncludeServices", "true" }
+        };
+
+        var item = await StrucureRepository.FindAsync(filters);
+
+        return item;
+    }
+
+    protected async Task<List<File>> GetPhotosAsync(string slug)
+    {
+        var filters = new Dictionary<string, object>()
+{
+            { "Path", "/estates/projects/" + slug }
+        };
+
+        var photos = (await FileRepository.FindAllAsync(filters)).ToList();
+
+        return photos;
+    }
+
+    private void FlipPhotoNext()
+    {
+        FlipPhoto(1);
+    }
+
+    private void FlipPhotoPrev()
+    {
+        FlipPhoto(-1);
+    }
+
+    private void FlipPhoto(int flipCount)
+    {
+        if (Photos == null || Photos.Count < 1) return;
+
+        var min = -1;
+        var max = Photos.Count;
+        var currentIndex = Photos.IndexOf(SelectedPhoto);
+        var destIndex = currentIndex + flipCount;
+
+        if(destIndex >= max)
+        {
+            destIndex = destIndex - max;
+        }
+        else if(destIndex <= min)
+        {
+            destIndex = destIndex - min;
+        }
+
+        SelectedPhoto = Photos.ElementAtOrDefault(destIndex);
+    }
+}
