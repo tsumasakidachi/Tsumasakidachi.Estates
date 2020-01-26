@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetEnv;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace Tsumasakidachi.Estates
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate();
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpClient("Tsumasakidachi", c =>
@@ -49,6 +51,8 @@ namespace Tsumasakidachi.Estates
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             Env.Load();
+
+            app.UseAuthentication();
 
             app.UsePathBase("/estates");
 
