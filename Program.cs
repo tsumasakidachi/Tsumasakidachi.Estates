@@ -26,7 +26,7 @@ namespace Tsumasakidachi.Estates
 
                     if (port != null)
                     {
-                        var url = string.Concat("http://0.0.0.0:", port);
+                        var url = string.Concat("https://0.0.0.0:", port);
 
                         webBuilder.UseUrls(url);
                     }
