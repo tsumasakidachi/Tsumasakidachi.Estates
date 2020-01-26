@@ -23,9 +23,15 @@ namespace Tsumasakidachi.Estates
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     var port = Environment.GetEnvironmentVariable("PORT");
-                    webBuilder
-                    .UseUrls("https://*:" + port)
-                    .UseStartup<Startup>();
+
+                    if (port != null)
+                    {
+                        var url = string.Concat("http://0.0.0.0:", port);
+
+                        webBuilder.UseUrls(url);
+                    }
+
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }
