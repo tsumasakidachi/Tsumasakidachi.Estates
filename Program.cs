@@ -22,14 +22,10 @@ namespace Tsumasakidachi.Estates
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    try
-                    {
-                        var port = Environment.GetEnvironmentVariable("PORT");
-                        webBuilder.UseUrls("http://+:" + port, "https://+:" + port);
-                    }
-                    catch { }
-
-                    webBuilder.UseStartup<Startup>();
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    webBuilder
+                    .UseUrls("https://*:" + port)
+                    .UseStartup<Startup>();
                 });
     }
 }
