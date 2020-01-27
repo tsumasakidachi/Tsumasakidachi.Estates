@@ -92,7 +92,10 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所");
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所");
+        }
     }
 
     protected async Task<Structure> GetItemAsync()

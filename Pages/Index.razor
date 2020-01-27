@@ -86,7 +86,10 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所 プロジェクト");
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所 プロジェクト");
+        }
     }
 
     protected async Task<List<IGrouping<Market, Structure>>> GetItemsAsync()

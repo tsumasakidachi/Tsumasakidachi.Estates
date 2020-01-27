@@ -97,7 +97,10 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所 物件");
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("setTitle", "妻崎地所 物件");
+        }
     }
 
     protected async Task<List<IGrouping<Market, Structure>>> GetItemsAsync()
@@ -109,8 +112,8 @@
         var items = await StrucureRepository.FindAllAsync(filters);
 
         var groupedtems = (from structure in items
-                            group structure by structure.Market into grp
-                            select grp).ToList();
+                           group structure by structure.Market into grp
+                           select grp).ToList();
 
         var comparer = StringComparer.OrdinalIgnoreCase.WithNaturalSort();
         groupedtems.Sort((a, b) => comparer.Compare(a.Key.Order, b.Key.Order));
